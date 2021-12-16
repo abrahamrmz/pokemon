@@ -1,0 +1,37 @@
+<input type="checkbox" id="toggle" name="toggle">
+
+<ul class="navigation-menu">
+  <li><a (click)="buscador()" style="cursor: pointer;">Buscador</a></li>
+  <li><a (click)="api()" style="cursor: pointer;">API</a></li>
+  <li><a (click)="contacto()" style="cursor: pointer;">Contacto</a></li>
+</ul>
+<div class="navbar">
+  <label style="color: white;" for="toggle"><mat-icon style="color: white;">menu</mat-icon>Busca tu pokemon favorito!</label>
+</div>
+<div class="profile-card">
+  <div class="card-header">
+    <h1>Abraham Guadalupe Rocha Ramirez</h1>
+  </div>
+    <h4> Sobre mi</h4>
+    <p style="text-align: justify;">Egresado de la carrera de ingeniero en Telematica en 2018, laborando desde Julio de 2018 para la empresa Equipos y Soluciones Documentales S.A. de C.V. 
+      entre mis principales actividades, son la creacion de una plataforma WEB y APP movil con distintos modulos, usando como tecnologias y/o lenguajes PHP(Laravel), C#, HTML, CSS, SCSS, JavaScritp, JQUERY, AJAX, 
+      JSON, Angular 2+, JWT, Ionic, NodeJS, MySQL, SQL SERVER, Firebase, asi como de software, AndroidStudio, MySQL Workbench, cPanel, phpMyAdmin, SublimeText, VisualSudio code, brackets,
+      Postman, XAMPP, Laragon, AnyDesk, TeamViewer, Discord (manejo y creacion de bots). Por otro lado tambien cuento con experiencia como lider de proyecto, capacitador, atencion al usuario final y capturista.
+    </p>
+    <div>
+      <img class="image1" src="http://abraham93.space/images/ME.jpg" alt="profile Image">
+    </div>
+  <div class="card-info">
+   <b>LinkedIn:</b><a href="https://www.linkedin.com/in/abraham-rocha-ramirez-341b031ab/"> Abraham </a>
+   <p>Hazme saber que ya viste mi aplicacion! Solo haz click en el boton </p>
+   <form class="example-form">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label style="color: white;">Mensaje</mat-label>
+      <input name="mensaje" [(ngModel)]="mensaje" style="color: white;" matInput #message maxlength="256">
+      <mat-hint  style="color: white;" align="start"><strong>Esribeme un mensaje!</strong> </mat-hint>
+      <mat-hint  style="color: white;" align="end">{{message.value.length}} / 256</mat-hint>
+    </mat-form-field>
+  </form>
+  <button (click)="getTotal()"> ENVIAR! </button>
+   <p *ngIf="total > 0"> Total de notificaciones enviadas: {{total}}</p>
+</div>

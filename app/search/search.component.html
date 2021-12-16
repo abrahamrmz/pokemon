@@ -1,0 +1,49 @@
+<input type="checkbox" id="toggle" name="toggle">
+
+<ul class="navigation-menu">
+  <li><a (click)="buscador()" style="cursor: pointer;">Buscador</a></li>
+  <li><a (click)="api()" style="cursor: pointer;">API</a></li>
+  <li><a (click)="contacto()" style="cursor: pointer;">Contacto</a></li>
+</ul>
+<div class="navbar">
+  <label style="color: white;" for="toggle"><mat-icon style="color: white;">menu</mat-icon>Busca tu pokemon favorito!</label>
+</div>
+<div id="search" class="search-box">
+    <input type="text" name="pokemons" [(ngModel)]="pokemons" (ngModelChange)="ConvertToLower($event)" placeholder="Buscar un pokemon" class="search-input">
+      <a (click)="getPokemon(submitBtn)" #submitBtn class="search-btn" style="cursor: pointer;">
+        <mat-icon>search</mat-icon>
+      </a>
+    <div *ngIf="error">
+      <span class="my-span">{{error}}</span>
+    </div>
+</div>
+<div class="spinner" id="spinner" *ngIf="response == false">
+  <mat-spinner></mat-spinner>
+</div>
+<div *ngIf="response" class="profile-card">
+  <div class="card-header">
+    <div *ngIf="pokeInfo.id > 1; then thenBlock else elseBlock"></div>
+    <ng-template #thenBlock>Back<mat-icon title="anterior" style="cursor: pointer;" (click)="backPokemon(pokeInfo.id)">arrow_back_ios</mat-icon></ng-template>
+    <ng-template #elseBlock><mat-icon style="cursor: auto;">arrow_back_ios</mat-icon></ng-template>
+    <mat-icon>face</mat-icon><mat-icon  title="siguiente" style="cursor: pointer;" (click)="nextPokemon(pokeInfo.id)">arrow_forward_ios</mat-icon>Next
+    <h1>Nombre: {{pokeInfo.name}}</h1>
+    <p>Experiencia base: {{pokeInfo.base_experience}}</p>
+    <mat-list>
+      Habilidades: <mat-list-item *ngFor="let hab of pokeInfo.abilities; let i = index"> {{hab.ability.name}}, </mat-list-item>
+    </mat-list>
+    <mat-list *ngIf="pokeInfo.held_items.length > 0">
+      Items: <mat-list-item *ngFor="let ite of pokeInfo.held_items; let i = index"> {{ite.item.name}}, </mat-list-item>
+    </mat-list>
+    <p>Altura: {{pokeInfo.height}}</p>
+    <p>Peso: {{pokeInfo.weight}}</p>
+    <mat-list>
+      Ataques: <mat-list-item *ngFor="let move of pokeInfo.moves | slice:0:10; let i = index"> {{move.move.name}}, </mat-list-item>
+    </mat-list>
+  </div>
+  <img class="image1" src="{{pokeInfo.sprites.other.dream_world.front_default}}" alt="profile Image">
+  <div class="card-info">
+    <p>{{pokeInfo.name}} es un pokemon de tipo {{pokeInfo.types[0].type.name}} y estos son sus atributos principales, Salud: {{pokeInfo.stats[0].base_stat}}, Ataque: {{pokeInfo.stats[1].base_stat}}
+     Defensa: {{pokeInfo.stats[2].base_stat}}, Ataque especial: {{pokeInfo.stats[3].base_stat}}, Defensa especial: {{pokeInfo.stats[4].base_stat}} y Velocidad: {{pokeInfo.stats[5].base_stat}}</p>
+  </div>
+</div>
+<router-outlet></router-outlet>
