@@ -1,4 +1,4 @@
-# Pokedex para Cura Deuda
+# Pokedex para Cura Deuda por: Abraham Guadalupe Rocha Ramirez
 
 Hola! este es mi codigo en angular/typescript hecho para la API de pokemon cuenta con los siguientes apartados
 -Buscador por nombre y navegador entre siguiente y anterior pokemon con un pequeno resumen del mismo e imagen
